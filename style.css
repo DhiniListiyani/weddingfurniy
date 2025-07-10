@@ -1,0 +1,566 @@
+/* --- Global Styles --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Warna teks default menjadi terang untuk tema gelap */
+    color: #f0f0f0; 
+    /* Latar belakang utama: Gambar alam gelap */
+    background-image: url('prwed 1.jpg'); /* GANTI DENGAN NAMA FILE GAMBAR ALAM GELAP UTAMA ANDA */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Gambar tidak bergerak saat di-scroll */
+    background-repeat: no-repeat;
+    background-color: #1a1a1a; /* Fallback jika gambar tidak load */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Overlay untuk latar belakang utama (untuk sedikit meredupkan gambar background body) */
+/* Saya sarankan menggunakan overlay gelap jika gambar background body sudah cukup terang.
+   Jika gambar body sudah sangat gelap, Anda bisa mengurangi opacitynya atau menghapus ini. */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay hitam semi-transparan */
+    z-index: -1;
+}
+
+/* Bunga Sakura yang jatuh - Kanan atas */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50px;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    /* GANTI 'bunga-sakura.png' dengan nama file gambar sakura Anda, termasuk path jika ada subfolder */
+    /* Pastikan gambar bunga sakura ini memiliki latar belakang transparan (PNG) */
+    background-image: url('bunga-sakura.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+    pointer-events: none;
+    animation: sakura-fall-right 20s linear infinite;
+}
+
+/* Bunga Sakura yang jatuh - Kiri bawah (opsional, pastikan Anda menambahkan <div class="sakura-left"></div> di HTML jika ingin 2 arah) */
+.sakura-left {
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    /* GANTI 'bunga-sakura.png' dengan nama file gambar sakura Anda, termasuk path jika ada subfolder */
+    /* Pastikan gambar bunga sakura ini memiliki latar belakang transparan (PNG) */
+    background-image: url('bunga-sakura.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+    pointer-events: none;
+    transform: scaleX(-1);
+    animation: sakura-fall-left 25s linear infinite;
+}
+
+/* --- Utilities --- */
+.center {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- Font Styling for Headings and Paragraphs --- */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #E0BBE4; /* Warna terang/emas/silver untuk judul */
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.8em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2.2em;
+    color: #957DAD; /* Warna ungu/abu-abu lembut, lebih terang */
+}
+
+h3 {
+    font-size: 1.6em;
+    color: #CBAACB; /* Warna yang lebih terang lagi */
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #e0e0e0; /* Warna teks paragraf menjadi terang */
+}
+
+em {
+    font-style: italic;
+    color: #c0c0c0; /* Warna abu-abu terang untuk italic */
+}
+
+strong {
+    font-weight: 700;
+    color: #fff; /* Putih terang untuk bold */
+}
+
+/* --- Intro Overlay (First Screen) --- */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* GAMBAR GEDUNG EROPA KLASIK OFFLINE HANYA DI SINI */
+    /* GANTI 'gedung-eropa.jpg' dengan nama file gambar Anda, termasuk path jika ada subfolder */
+    background-image: url('gedung-eropa.jpg'); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Pastikan di paling atas */
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Overlay warna di atas gambar background intro (untuk keterbacaan teks) */
+.intro-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Overlay hitam lebih gelap agar teks putih terbaca */
+    z-index: -1; /* Di bawah konten utama overlay */
+}
+
+.intro-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Nonaktifkan interaksi setelah fade-out */
+}
+
+.intro-content {
+    position: relative; /* Penting agar z-index bekerja */
+    z-index: 2; /* Pastikan konten intro di atas overlay */
+    text-align: center;
+    animation: fadeInScale 1.5s ease-out forwards; /* Animasi fade-in saat masuk */
+    /* Latar belakang transparan untuk teks intro agar lebih terbaca di atas gambar gelap */
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Bayangan lebih gelap */
+}
+
+.intro-content h1 {
+    font-size: 3em;
+    margin-bottom: 5px;
+    color: #fff; /* Teks putih untuk judul intro */
+}
+
+.intro-content h2 {
+    font-size: 3.5em;
+    margin: 0;
+    color: #E0BBE4; /* Warna terang yang sama dengan judul utama */
+}
+
+.intro-content h3 {
+    font-size: 1.8em;
+    margin: 0;
+    color: #CBAACB;
+}
+
+.intro-content .date {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #957DAD; /* Warna kontras terang untuk tanggal */
+}
+
+/* --- Elegant Button Style --- */
+.elegant-button {
+    background-color: #957DAD; /* Warna tombol yang lebih gelap namun tetap elegan */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap */
+}
+
+.elegant-button:hover {
+    background-color: #6C5B7B; /* Warna lebih gelap saat hover */
+    transform: translateY(-2px);
+}
+
+/* --- Hidden Content (Main Invitation) --- */
+.hidden-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden-content.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* --- Hero Section (Background Foto Pasangan) --- */
+.hero-section {
+    padding: 80px 20px;
+    /* GANTI 'tulisan.jpg' dengan foto pasangan Anda */
+    background-image: url('prewed 4.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Bayangan lebih gelap */
+    overflow: hidden; /* Penting untuk border-radius dan gambar */
+}
+
+/* Overlay gelap di atas foto pasangan untuk keterbacaan teks */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay hitam semi-transparan yang lebih kuat */
+    z-index: 0;
+    border-radius: 10px;
+}
+
+/* Pastikan semua elemen di dalam hero-section berada di atas overlay */
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section .date-hero {
+    position: relative;
+    z-index: 1;
+    color: #fff; /* Teks putih untuk hero section */
+}
+
+.hero-section .date-hero {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #957DAD; /* Warna kontras terang untuk tanggal */
+}
+
+/* --- Quote Section --- */
+.quote {
+    padding: 40px 20px;
+    /* Latar belakang gelap transparan untuk section ini */
+    background-color: rgba(20, 20, 20, 0.8); 
+    border-radius: 10px;
+    margin-top: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    font-style: italic;
+    color: #ddd; /* Teks menjadi terang */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Save The Date Section --- */
+.save-date {
+    padding: 50px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(30, 30, 30, 0.85); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.save-date p {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #e0e0e0; /* Teks terang */
+}
+
+/* --- Event Section (Akad & Resepsi) --- */
+.event-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(40, 40, 40, 0.9); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.event-card {
+    /* Warna card lebih terang sedikit dari background section, tapi tetap gelap */
+    background-color: rgba(60, 60, 60, 0.95); 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    color: #fff; /* Teks di card menjadi putih */
+}
+
+.event-card h3 {
+    margin-top: 0;
+    color: #E0BBE4; /* Warna judul di card terang */
+}
+
+/* --- Closing Section --- */
+.closing {
+    padding: 50px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(20, 20, 20, 0.7); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.closing .hashtag {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    color: #957DAD; /* Warna kontras terang untuk hashtag */
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* --- Map Section --- */
+.map-section {
+    padding: 40px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(30, 30, 30, 0.8); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Bayangan iframe lebih gelap */
+}
+
+/* --- RSVP Button (WhatsApp) --- */
+.rsvp {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background-color: #6C5B7B; /* Warna tombol yang lebih gelap untuk aksi */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.rsvp:hover {
+    background-color: #5B4E6B;
+    transform: translateY(-2px);
+}
+
+/* --- Countdown Section Styling --- */
+.countdown-section {
+    padding: 40px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(40, 40, 40, 0.9); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background-color: #957DAD; /* Warna kotak countdown yang terang */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 90px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-item span {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.countdown-item label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Gallery Section --- */
+.gallery {
+    padding: 50px 20px;
+    /* Latar belakang gelap transparan */
+    background-color: rgba(30, 30, 30, 0.9); 
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#gallery-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Bayangan galeri lebih gelap */
+}
+
+#carouselImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.carousel-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* --- Animations --- */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animasi jatuh bunga sakura */
+@keyframes sakura-fall-right {
+    0% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 0; }
+    25% { opacity: 1; }
+    100% { transform: translateY(120vh) translateX(-50px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes sakura-fall-left {
+    0% { transform: translateY(-100px) translateX(0) rotate(0deg) scaleX(-1); opacity: 0; }
+    25% { opacity: 1; }
+    100% { transform: translateY(120vh) translateX(50px) rotate(-360deg) scaleX(-1); opacity: 0; }
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.4em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .intro-content h1 {
+        font-size: 2.5em;
+    }
+    .intro-content h2 {
+        font-size: 3em;
+    }
+    .intro-content h3 {
+        font-size: 1.5em;
+    }
+    .intro-content .date {
+        font-size: 1.2em;
+    }
+    .event-card {
+        min-width: unset;
+        max-width: 100%;
+    }
+    .elegant-button, .rsvp {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    h3 {
+        font-size: 1.2em;
+    }
+    .intro-content h1 {
+        font-size: 2em;
+    }
+    .intro-content h2 {
+        font-size: 2.5em;
+    }
+    .intro-content h3 {
+        font-size: 1.2em;
+    }
+    .intro-content .date {
+        font-size: 1em;
+    }
+    .elegant-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .rsvp {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+    .countdown-item {
+        min-width: 80px;
+        padding: 10px 15px;
+    }
+    .countdown-item span {
+        font-size: 2em;
+    }
+    .countdown-item label {
+        font-size: 0.8em;
+    }
+}

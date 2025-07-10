@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Wedding Of Dhini & Furqon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-content">
+            <h1>THE WEDDING OF</h1>
+            <h2>FURQON</h2>
+            <h3>&</h3>
+            <h2>DHINI</h2>
+            <p class="date">11 OCTOBER , 2025</p>
+            <button id="openInvitationButton" class="elegant-button">Open Invitation</button>
+        </div>
+    </div>
+
+    <div id="mainContent" class="hidden-content">
+        <div class="hero-section center">
+            <h1>THE WEDDING OF</h1>
+            <h2>FURQON</h2>
+            <h3>&</h3>
+            <h2>DHINI</h2>
+            <p class="date-hero">11 OCTOBER 2025</p>
+        </div>
+
+        <div class="quote center">
+            <p>
+                “And of His signs is that He created from yourselves mates that you may find tranquility in them, and He placed between you affection and mercy. Indeed in that are signs for a people who give thought.”<br>
+                <em>(Q.S. Ar-Rum: 21)</em>
+            </p>
+        </div>
+
+        <div class="save-date center">
+            <h2>SAVE THE DATE</h2>
+            <p>FOR THE WEDDING OF</p>
+            <h3>MUHAMMAD FURQON NURHALIM</h3>
+            <p>The Son of Mr. Ir. Halim Kusuma & Mrs. dr. Aisyah Azzahra, Sp.A</p>
+            <h3>DHINI LISTIYANI</h3>
+            <p>The Daughter of Mr. Edi Rahmani, S.T. & Mrs. Suryani Rinan, S.Pd</p>
+        </div>
+
+        <div class="event-section center">
+            <div class="event-card">
+                <h3>AKAD</h3>
+                <p>SATURDAY, OCTOBER 11, 2025</p>
+                <p>15.00 - 17.00 WIB</p>
+                <p>Holiday Inn Bandung Pasteur (Pasteur Convention Center)</p>
+                <p>Jl. Dr. Djunjunan No.96, Pasteur, Kec. Sukajadi, Kota Bandung</p>
+            </div>
+            <div class="event-card">
+                <h3>WEDDING RECEPTION</h3>
+                <p>SATURDAY, 11 OCTOBER , 2025</p>
+                <p>18.00 - 20.00 WIB</p>
+                <p>Holiday Inn Bandung Pasteur (Pasteur Convention Center)</p>
+                <p>Jl. Dr. Djunjunan No.96, Pasteur, Kec. Sukajadi, Kota Bandung</p>
+            </div>
+        </div>
+
+        <section class="countdown-section center">
+            <h2>Towards a happy day</h2>
+            <div id="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <label>Day</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <label>Hours</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <label>Minutes</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <label>Seconds</label>
+                </div>
+            </div>
+            <div class="center" style="margin-top: 30px;">
+                <a class="rsvp elegant-button" href="https://wa.me/6289662154982?text=Halo%20Furqon%20dan%20Dhini,%20saya%20akan%20hadir%20di%20acara%20pernikahan%20kalian." target="_blank">
+                    Confirm Your Presence via WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <div class="gallery center">
+            <h2>Our Cherished Moments</h2>
+            <div id="gallery-wrapper">
+                <img id="carouselImage" src="prewed 14.jpg" alt="Wedding Gallery" />
+                <div class="carousel-buttons">
+                    <button onclick="prevImage()" class="elegant-button">⟨ Prev</button>
+                    <button onclick="nextImage()" class="elegant-button">Next ⟩</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section center">
+            <h3>Lokasi Acara</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.954133989028!2d107.5906402!3d-6.8960897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e665b08b263d%3A0x2edd60e3b317f7b4!2sHoliday%20Inn%20Bandung%20Pasteur!5e0!3m2!1sid!2sid!4v1752167689448!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a href="https://maps.app.goo.gl/qAzqYBS38eA9yWWr6" class="elegant-button" target="_blank" style="margin-top: 20px;">Lihat di Google Maps</a>
+        </div>
+
+        <div class="closing center">
+            <p>
+                It would be an honor and a pleasure for us if you would attend and give your blessing. <br>
+                We, the happy ones, <br>
+                <strong>FURQON & DHINI</strong>
+            </p>
+            <p class="hashtag">#FurqonDhiniWedding</p>
+        </div>
+
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="chorus_nothings_gonna_change.mp3" type="audio/mpeg" />
+        Browser Anda tidak mendukung audio.
+    </audio>
+
+    <script>
+        // Set the date we're counting down to (GANTI DENGAN TANGGAL ACARA ANDA YANG BENAR)
+        // Format: "Month Day, Year HH:MM:SS" -> "October 11, 2025 15:00:00"
+        const countdownDate = new Date("October 11, 2025 15:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            if (daysEl && hoursEl && minutesEl && secondsEl) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.innerHTML = days < 10 ? "0" + days : days;
+                hoursEl.innerHTML = hours < 10 ? "0" + hours : hours;
+                minutesEl.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                secondsEl.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "ACARA SUDAH DIMULAI!";
+                }
+            } else {
+                clearInterval(x);
+                console.error("Countdown elements not found. Stopping countdown.");
+            }
+        }, 1000);
+
+        // Galeri Carousel
+        const images = ["prewed 14.jpg", "kiw1.jpg", "prewed 12.jpg", "kiw2.jpg", "prewed 13.jpg", "prewed 11.jpg", "prewed 9.jpg"]; // Ganti dengan nama file foto Anda
+        let currentIndex = 0;
+        const carouselImage = document.getElementById("carouselImage");
+
+        function showImage(index) {
+            carouselImage.src = images[index];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        // Fade out intro overlay when button is clicked and play music
+        document.getElementById('openInvitationButton').addEventListener('click', function() {
+            document.getElementById('introOverlay').classList.add('fade-out');
+            document.getElementById('mainContent').classList.add('visible'); // Show main content
+
+            // Play music after user interaction (browser requirement)
+            const bgMusic = document.getElementById('bgMusic');
+            if (bgMusic) {
+                bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+            }
+        });
+
+        // Ensure initial image is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            showImage(currentIndex);
+        });
+
+    </script>
+</body>
+</html>
